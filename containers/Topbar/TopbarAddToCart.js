@@ -7,7 +7,7 @@ import ecommerceAction from '@iso/redux/ecommerce/actions';
 import TopbarDropdownWrapper from './TopbarDropdown.styles';
 import { TopbarCartIcon } from '@iso/config/icon.config';
 
-const { changeViewTopbarCart, changeProductQuantity } = ecommerceAction;
+// const { changeViewTopbarCart, changeProductQuantity } = ecommerceAction;
 let totalPrice;
 class TopbarAddtoCart extends Component {
   constructor(props) {
@@ -19,64 +19,70 @@ class TopbarAddtoCart extends Component {
     this.cancelQuantity = this.cancelQuantity.bind(this);
   }
   hide() {
-    this.props.changeViewTopbarCart(false);
+    // this.props.changeViewTopbarCart(false);
   }
   handleVisibleChange() {
-    this.props.changeViewTopbarCart(!this.props.viewTopbarCart);
+    // this.props.changeViewTopbarCart(!this.props.viewTopbarCart);
   }
   renderProducts() {
-    const { productQuantity, products } = this.props;
-    totalPrice = 0;
-    if (!productQuantity || productQuantity.length === 0) {
-      return (
-        <div className="isoNoItemMsg">
-          <span>No item found</span>
-        </div>
-      );
-    }
-    return productQuantity.map((product) => {
-      totalPrice += product.quantity * products[product.objectID].price;
-      return (
-        <SingleCart
-          key={product.objectID}
-          quantity={product.quantity}
-          changeQuantity={this.changeQuantity}
-          cancelQuantity={this.cancelQuantity}
-          {...products[product.objectID]}
-        />
-      );
-    });
+    // const { productQuantity, products } = this.props;
+    // totalPrice = 0;
+    // if (!productQuantity || productQuantity.length === 0) {
+    //   return (
+    //     <div className="isoNoItemMsg">
+    //       <span>No item found</span>
+    //     </div>
+    //   );
+    // }
+    // return productQuantity.map((product) => {
+    //   totalPrice += product.quantity * products[product.objectID].price;
+    //   return (
+    //     <SingleCart
+    //       key={product.objectID}
+    //       quantity={product.quantity}
+    //       changeQuantity={this.changeQuantity}
+    //       cancelQuantity={this.cancelQuantity}
+    //       {...products[product.objectID]}
+    //     />
+    //   );
+    // });
+
+    return (
+      <div className="isoNoItemMsg">
+        <span>No item found</span>
+      </div>
+    );    
   }
   changeQuantity(objectID, quantity) {
-    const { productQuantity } = this.props;
-    const newProductQuantity = [];
-    productQuantity.forEach((product) => {
-      if (product.objectID !== objectID) {
-        newProductQuantity.push(product);
-      } else {
-        newProductQuantity.push({
-          objectID,
-          quantity,
-        });
-      }
-    });
-    this.props.changeProductQuantity(newProductQuantity);
+    // const { productQuantity } = this.props;
+    // const newProductQuantity = [];
+    // productQuantity.forEach((product) => {
+    //   if (product.objectID !== objectID) {
+    //     newProductQuantity.push(product);
+    //   } else {
+    //     newProductQuantity.push({
+    //       objectID,
+    //       quantity,
+    //     });
+    //   }
+    // });
+    // this.props.changeProductQuantity(newProductQuantity);
   }
   cancelQuantity(objectID) {
-    const { productQuantity } = this.props;
-    const newProductQuantity = [];
-    productQuantity.forEach((product) => {
-      if (product.objectID !== objectID) {
-        newProductQuantity.push(product);
-      }
-    });
-    this.props.changeProductQuantity(newProductQuantity);
+    // const { productQuantity } = this.props;
+    // const newProductQuantity = [];
+    // productQuantity.forEach((product) => {
+    //   if (product.objectID !== objectID) {
+    //     newProductQuantity.push(product);
+    //   }
+    // });
+    // this.props.changeProductQuantity(newProductQuantity);
   }
 
   render() {
     const {
       url,
-      productQuantity,
+      // productQuantity,
       viewTopbarCart,
       customizedTheme,
     } = this.props;
@@ -94,7 +100,8 @@ class TopbarAddtoCart extends Component {
           </Link>
 
           <h3>
-            Total Price: <span>${totalPrice.toFixed(2)}</span>
+            Total Price: <span>0</span>
+            {/* Total Price: <span>${totalPrice.toFixed(2)}</span> */}
           </h3>
         </div>
       </TopbarDropdownWrapper>
@@ -109,11 +116,11 @@ class TopbarAddtoCart extends Component {
       >
         <div className="isoIconWrapper">
           <TopbarCartIcon size={24} color={customizedTheme.textColor} />
-          {productQuantity.length === 0 ? (
+          {/* {productQuantity.length === 0 ? (
             <span>0</span>
           ) : (
             <span>{productQuantity.length}</span>
-          )}
+          )} */}
         </div>
       </Popover>
     );
@@ -125,7 +132,9 @@ function mapStateToProps(state) {
     customizedTheme: state.ThemeSwitcher.topbarTheme,
   };
 }
-export default connect(mapStateToProps, {
-  changeViewTopbarCart,
-  changeProductQuantity,
-})(TopbarAddtoCart);
+// export default connect(mapStateToProps, {
+//   changeViewTopbarCart,
+//   changeProductQuantity,
+// })(TopbarAddtoCart);
+
+export default connect(mapStateToProps, {})(TopbarAddtoCart);

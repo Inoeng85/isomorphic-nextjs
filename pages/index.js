@@ -1,20 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Input from '@iso/components/uielements/input';
 import Checkbox from '@iso/components/uielements/checkbox';
 import Button from '@iso/components/uielements/button';
 import IntlMessages from '@iso/components/utility/intlMessages';
 import jwtConfig from '@iso/config/jwt.config';
-import FirebaseLogin from '@iso/containers/FirebaseForm/FirebaseForm';
-import Auth0 from '../authentication/Auth0';
+// import FirebaseLogin from '@iso/containers/FirebaseForm/FirebaseForm';
+// import Auth0 from '../authentication/Auth0';
 import authActions from '../authentication/actions';
 import SignInStyleWrapper from '../styled/SignIn.styles';
 const { login } = authActions;
 export default function SignInPage(props) {
   const dispatch = useDispatch();
-  const router = useRouter();
+  // const router = useRouter();
   const handleLogin = e => {
     e.preventDefault();
     dispatch(login(true));
@@ -82,7 +82,7 @@ export default function SignInPage(props) {
             </p>
 
             <div className="isoInputWrapper isoOtherLogin">
-              <Button
+              {/* <Button
                 onClick={handleLogin}
                 type="primary"
                 className="btnFacebook"
@@ -108,7 +108,7 @@ export default function SignInPage(props) {
               <FirebaseLogin
                 history={router}
                 login={token => dispatch(login(token))}
-              />
+              /> */}
             </div>
             <div className="isoCenterComponent isoHelperWrapper">
               <Link href="/forgotpassword">

@@ -24,7 +24,11 @@ const nextConfig = {
 		};
 		return config;
 	},
-	webpack5:false,
+	// Remove this to leverage Next.js' static image handling
+	// read more here: https://nextjs.org/docs/api-reference/next/image
+	images: {
+		disableStaticImages: true
+	},
 };
 
 // fix: prevents error when .css files are required by node
